@@ -1,5 +1,16 @@
 ## Docker Ruby on Rails + Webpacker + MySQL
 
+### 環境変数一覧
+
+環境変数|説明|デフォルト
+MYSQL_ROOT_PASSWORD|[mysql] ルートパスワード|root
+MYSQL_DATABASE|[mysql] デフォルトデータベース|test_database
+MYSQL_USER|[mysql] 初期投入ユーザー|docker
+MYSQL_PASSWORD|[mysql] 初期投入パスワード|docker
+MYSQL_PORT|[mysql] mysqlポート|3306
+RAILS_PORT|[rails] rails serverポート|3000
+WEBPACK_PORT|[webpack] webpacker ポート|3035
+
 ### 始めから作りたい人向け
 
 #### Gemfile

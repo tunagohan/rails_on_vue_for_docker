@@ -3,17 +3,17 @@ services:
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test_database
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: docker
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:-root}"
+      MYSQL_DATABASE: "{MYSQL_DATABASE:-test_database}"
+      MYSQL_USER: "${MYSQL_USER:-docker}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD:-docker}"
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - mysql_data:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
-      - "3316:3306"
+      - "${MYSQL_PORT:-3306}:3306"
 
   web:
     build:
@@ -35,7 +35,7 @@ services:
       - .:/app
       - bundle_data:/usr/local/bundle
     ports:
-      - "3010:3000"
+      - "${RAILS_PORT:-3000}:3000"
 
   webpacker:
     build:
@@ -47,7 +47,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - "3045:3035"
+      - "${WEBPACK_PORT:-3035}:3035"
 
 volumes:
   bundle_data:

@@ -1,0 +1,7 @@
+export MYSQL_ROOT_PASSWORD=root
+export MYSQL_DATABASE=test_database
+export MYSQL_USER=docker
+export MYSQL_PASSWORD=docker
+export MYSQL_PORT=3306
+export RAILS_PORT=3000
+export WEBPACK_PORT=3035
