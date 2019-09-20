@@ -2,6 +2,8 @@
 
 ## 環境変数一覧
 
+設定した方が良き良き
+
 環境変数|説明|デフォルト
 :--|:--|:--
 MYSQL_ROOT_PASSWORD|[mysql] ルートパスワード|root
@@ -185,6 +187,14 @@ $ docker-compose run --rm web rails db:create
 
 $ docker-compose run --rm web yarn
 $ docker-compose run --rm web rails db:create
+
+```
+
+or
+
+```
+
+$ bin/setup
 
 ```
 
