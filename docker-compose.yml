@@ -1,0 +1,47 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_database
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3316:3306"
+
+  webpacker:
+    build: .
+    command: bundle exec bin/webpack-dev-server
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+    ports:
+      - "3045:3035"
+
+  rails:
+    build: .
+    environment:
+      RAILS_ENV: development
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_HOST: db
+      RAILS_SERVE_STATIC_FILES: "false"
+    command: bash -c "bundle exec rails s -p 3000 -b '0.0.0.0'"
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+      - webpacker
+    volumes:
+      - .:/app
+      - bundle_data:/usr/local/bundle
+    ports:
+      - "3010:3000"
+
+volumes:
+  bundle_data:
+  mysql_data:
