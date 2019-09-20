@@ -1,6 +1,6 @@
-## Docker Ruby on Rails + Webpacker + MySQL
+# Docker Ruby on Rails + Webpacker + MySQL
 
-### 環境変数一覧
+## 環境変数一覧
 
 環境変数|説明|デフォルト
 MYSQL_ROOT_PASSWORD|[mysql] ルートパスワード|root
@@ -10,6 +10,8 @@ MYSQL_PASSWORD|[mysql] 初期投入パスワード|docker
 MYSQL_PORT|[mysql] mysqlポート|3306
 RAILS_PORT|[rails] rails serverポート|3000
 WEBPACK_PORT|[webpack] webpacker ポート|3035
+
+## Step 1
 
 ### 始めから作りたい人向け
 
@@ -167,3 +169,24 @@ $ docker-compose up -d
 $ docker-compose up -d
 
 ```
+
+## Step 2
+
+```
+
+$ docker-compose run --rm web rails db:create
+
+```
+
+もし `error Couldn't find an integrity file` のようなエラーが出たら
+
+```
+
+$ docker-compose run --rm web yarn
+$ docker-compose run --rm web rails db:create
+
+```
+
+## Step 3
+
+開発へGo~
