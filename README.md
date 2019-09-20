@@ -1,7 +1,6 @@
 ## Docker Ruby on Rails + Webpacker + MySQL
 
-
-### Step1
+### 始めから作りたい人向け
 
 #### Gemfile
 
@@ -149,3 +148,7 @@ $ docker-compose run web rails db:create
 $ docker-compose up -d
 
 ```
+
+## Cloneして使いたい人向け
+
+s
