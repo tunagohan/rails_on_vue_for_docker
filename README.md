@@ -151,4 +151,8 @@ $ docker-compose up -d
 
 ## Cloneして使いたい人向け
 
-s
+```
+
+$ docker-compose up -d
+
+```
