@@ -7,23 +7,18 @@ services:
       MYSQL_DATABASE: test_database
       MYSQL_USER: docker
       MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - "3316:3306"
 
-  webpacker:
-    build: .
-    command: bundle exec bin/webpack-dev-server
-    tty: true
-    stdin_open: true
-    volumes:
-      - .:/app
-    ports:
-      - "3045:3035"
-
-  rails:
-    build: .
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/rails/Dockerfile
     environment:
       RAILS_ENV: development
       MYSQL_USER: root
@@ -41,6 +36,18 @@ services:
       - bundle_data:/usr/local/bundle
     ports:
       - "3010:3000"
+
+  webpacker:
+    build:
+      context: .
+      dockerfile: ./docker/rails/Dockerfile
+    command: bundle exec bin/webpack-dev-server
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+    ports:
+      - "3045:3035"
 
 volumes:
   bundle_data:
