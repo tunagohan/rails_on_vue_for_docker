@@ -3,6 +3,7 @@
 ## 環境変数一覧
 
 環境変数|説明|デフォルト
+:--:|:--:|:--:
 MYSQL_ROOT_PASSWORD|[mysql] ルートパスワード|root
 MYSQL_DATABASE|[mysql] デフォルトデータベース|test_database
 MYSQL_USER|[mysql] 初期投入ユーザー|docker
